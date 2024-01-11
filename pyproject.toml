@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "fastapi-backend-parfait"
+version = "0.1.0"
+description = "backend restAPI with FastAPI"
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [{include = "fastapi_backend_parfait"}]
+
+[tool.poetry.dependencies]
+python = "3.10.12"
+fastapi = "^0.101.1"
+uvicorn = {extras = ["standard"], version = "^0.23.2"}
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

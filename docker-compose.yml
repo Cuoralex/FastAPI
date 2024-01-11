@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  web:
+    profiles:
+      - web
+    build:
+      target: development_build
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+    depends_on:
+      - dbparfait
+    ports:
+      - "8087:8000"
+  dbparfait:
+    image: mongo:6.0.8
+    env_file:
+      - .env
+    restart: unless-stopped
+    environment:
+      - MONGO_INITDB_DATABASE=${MONGO_DB}
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_USER:-root}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_PASS:-example}
+      # - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-aitrade}
+    ports:
+      - '27017:27017'

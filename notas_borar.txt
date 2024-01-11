@@ -1,0 +1,3 @@
+https://github.com/AssemblyAI-Examples/ml-fastapi-docker-heroku/blob/main/Dockerfile
+https://devcenter.heroku.com/articles/build-docker-images-heroku-yml
+https://akshaykhatale.medium.com/deploy-fastapi-on-heroku-using-docker-container-a920f839de9b
