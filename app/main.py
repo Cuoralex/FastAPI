@@ -4,7 +4,7 @@ Este módulo contiene las rutas y funciones para el manejo de items en la aplica
 
 import os
 from typing import List, Union, Annotated
-from fastapi import Depends, FastAPI, HTTPException, status, Body
+from fastapi import Depends, FastAPI, HTTPException, status, Body, Cookie, Form, File, UploadFile
 from fastapi.responses import FileResponse, HTMLResponse
 from fastapi.security import APIKeyHeader
 from fastapi.staticfiles import StaticFiles
@@ -204,3 +204,25 @@ async def update_item(
 ):
     results = {"item_id": item_id, "item": item}
     return results
+
+@app.get("/itemscookies/")
+async def read_items(ads_id: Annotated[str | None, Cookie()] = None):
+    return {"ads_id": ads_id}
+
+@app.post("/login/")
+async def login(username: Annotated[str, Form()], password: Annotated[str, Form()]):
+    return {"username": username}
+
+@app.post("/files/")
+async def create_file(file: Annotated[bytes | None, File()] = None):
+    if not file:
+        return {"message": "No file sent"}
+    else:
+        return {"file_size": len(file)}
+
+@app.post("/uploadfile/")
+async def create_upload_file(file: UploadFile | None = None):
+    if not file:
+        return {"message": "No upload file sent"}
+    else:
+        return {"filename": file.filename}
