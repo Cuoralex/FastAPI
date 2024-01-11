@@ -8,9 +8,10 @@ packages = [{include = "fastapi_backend_parfait"}]
 
 [tool.poetry.dependencies]
 python = "3.10.12"
-fastapi = "^0.101.1"
+fastapi = "^0.108.0"
 uvicorn = {extras = ["standard"], version = "^0.23.2"}
-
+python-multipart = "0.0.6"
+mysql-connector-python = "^8.0.28"  # Agrega esta línea con la versión adecuada
 
 [build-system]
 requires = ["poetry-core"]
